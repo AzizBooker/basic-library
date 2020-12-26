@@ -66,8 +66,15 @@ li a:hover:not(.active) {
   color: var(--primaryColor);
   text-decoration: none;
 }
+#add-new-book{
+  background-color: var(--secondaryColor);
+  color: white;
+  width: 10vw;
+  
+}
+
 .libary hr{
-border: 1px solid var(--secondaryColor);
+border: 1px solid  var(--secondaryColor) ;
 }
 .new-book {
   background-color: var(--primaryColor);
@@ -76,13 +83,13 @@ border: 1px solid var(--secondaryColor);
   margin-top: 50px;
   width: 40%;
  
-  border-radius: 10px;
+  border-radius: px;
 }
 .new-book form{
   margin: 5% 5% 5% 5%;
   padding:5% 5% 5% 5%;
 }
-.new-book label{
+.new-book-modal-content label{
   font-size: 60px ;
   color: white;
 
@@ -113,6 +120,49 @@ border: 1px solid var(--secondaryColor);
   justify-content: flex-end;
   
 }
+.new-book-modal-content{
+  background-color: var(--primaryColor);
+  display: grid;
+  
+  margin-left: 30%;
+  margin-right: 30%;
+  padding:14px 14px 14px 14px;
+  border-radius: 10px;
+  text-align: center;
+}
+.new-book-modal-content input{
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  
+}
+.close-modal{
+  text-align: left;
+}
+.modal-btn{
+  display: flex;
+}
+.modal-btn button{
+  background-color: rgb(0,0,0,0);
+  border: 1px solid white;
+  transition: color 0.24s;
+}
+.modal-btn button:hover{
+  color: white;
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left:0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: var(--primaryColor); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
 
 .active-tab {
   background-color: var(--activeColor);
@@ -123,3 +173,4 @@ border: 1px solid var(--secondaryColor);
   margin-left: auto;
   margin-right: auto;
 }
+
