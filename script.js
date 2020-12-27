@@ -17,30 +17,57 @@ Book.prototype.info = function () {
     `)
 }
 
+const allBooks = []
+var highestIndexOfAllBooks = 0;
+const errorTypes = {
+    NotANumber: 1,
+    EmptyField: 2,
 
-div = document.querySelector('.new-book')
-function createBook() {
-    console.log('Hello')
-    newBook = document.createElement('div')
-    newBook.classList.add('new-book')
-    newBook.classList.add('center')
-    form = document.createElement('form')
-    title = document.createElement('input')
-    title.setAttribute('type', 'text')
-    title.setAttribute('placeholder', 'title')
-    author = document.createElement('input')
-    author.setAttribute('type', 'text')
-    author.setAttribute('placeholder', 'author')
-
-
-    form.appendChild(title)
-    form.appendChild(author)
-
-
-    newBook.appendChild(form)
-
-    div.appendChild(newBook)
 }
+
+Object.freeze(errorTypes)
+
+function handleExceptions(errorType) {
+    switch (errorType) {
+        case errorType.NotANumber:
+            console.error('Not A Number')
+            break;
+    }
+
+}
+function clearInputValues() {
+    newBookModal.style.display = "none"
+    newBookTitle.value = "";
+    newBookAuthor.value = "";
+    newBookPagesRead.value = "";
+    newBookTotalPages.value = "";
+}
+function createListings() {
+    allBooks.forEach(book => {
+        if (allBooks.indexOf(book) >= highestIndexOfAllBooks || highestIndexOfAllBooks == 0) {
+            div = document.createElement('div')
+            div.classList.add('new-book')
+            div.dataset.index = allBooks.indexOf(book)
+            p1 = document.createElement('p')
+            p2 = document.createElement('p')
+            p3 = document.createElement('p')
+            p4 = document.createElement('p')
+            p1.textContent = `Title:${book.title}`
+            p2.textContent = `Author:${book.author}`
+            p3.textContent = `Total Pages:${book.totalPages}`
+            p4.textContent = `Pages Read:${book.pagesRead}`
+            div.appendChild(p1)
+            div.appendChild(p2)
+            div.appendChild(p3)
+            div.appendChild(p4)
+
+            listings.appendChild(div)
+            highestIndexOfAllBooks++;
+        }
+    })
+}
+
+listings = document.querySelector("#listings")
 
 const newBookModal = document.getElementById('new-book-modal');
 const newBookBtn = document.getElementById('add-new-book');
@@ -53,14 +80,10 @@ const newBookPagesRead = document.getElementById('new-book-pages-read')
 const newBookTotalPages = document.getElementById('new-book-total-pages')
 newBookBtn.onclick = function () {
     newBookModal.style.display = "block";
-    console.log('button pressed')
+
 }
 closeModalBtn.onclick = function () {
-    newBookModal.style.display = "none"
-    newBookTitle.value = "";
-    newBookAuthor.value = "";
-    newBookPagesRead.value = "";
-    newBookTotalPages.value = "";
+    clearInputValues()
 }
 sumbitModalBtn.onclick = function () {
     titleVal = newBookTitle.value;
@@ -71,12 +94,18 @@ sumbitModalBtn.onclick = function () {
     newBook = new Book(titleVal, authorVal, totalPagesVal, pagesReadVal)
     if (titleVal == undefined || titleVal == '' ||
         authorVal == undefined || authorVal == '' ||
-        pagesReadVal ==undefined || pagesReadVal=='' ||
-        totalPagesVal ==undefined || totalPagesVal=='') {
+        pagesReadVal == undefined || pagesReadVal == '' ||
+        totalPagesVal == undefined || totalPagesVal == '') {
         console.log('test')
-    } else
+    } else if (isNaN(pagesReadVal) || isNaN(totalPagesVal)) {
+        console.error('NaN')
+    } else {
 
-
-        newBook.info();
+        allBooks.push(newBook)
+        console.table(allBooks)
+        newBookModal.style.display = 'none'
+        clearInputValues()
+        createListings()
+    }
 
 }
