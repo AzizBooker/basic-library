@@ -8,7 +8,7 @@
   --headerFontSize: 30px;
   --hugeFontSize: 60px;
 }
-::placeholder{
+::placeholder {
   color: rgb(160, 160, 160);
 }
 body {
@@ -18,14 +18,13 @@ h2 {
   color: var(--secondaryColor);
   font-size: var(--headerFontSize);
 }
-a{
-    font-family: 'Exo', sans-serif;
-    font-weight: bold;
+a {
+  font-family: "Exo", sans-serif;
+  font-weight: bold;
 }
-p{
-    
-font-family: 'Exo', sans-serif;
-font-weight: bold;
+p {
+  font-family: "Exo", sans-serif;
+  font-weight: bold;
 }
 ul {
   list-style-type: none;
@@ -66,107 +65,102 @@ li a:hover:not(.active) {
   color: var(--primaryColor);
   text-decoration: none;
 }
-#add-new-book{
+#add-new-book {
   background-color: var(--secondaryColor);
   color: white;
   width: 10vw;
-  
 }
 
-.libary hr{
-border: 1px solid  var(--secondaryColor) ;
+.libary hr {
+  border: 1px solid var(--secondaryColor);
 }
 .new-book {
   background-color: var(--primaryColor);
-
   
+
   margin-top: 50px;
   margin-left: 10px;
   padding: 10px 10px 10px 10px;
   border-radius: 20px;
   width: 40%;
- 
+
   border-radius: px;
 }
-.new-book p{
+.new-book p {
   color: white;
 }
-.new-book form{
-  margin: 5% 5% 5% 5%;
-  padding:5% 5% 5% 5%;
-}
-.new-book-modal-content label{
-  font-size: 60px ;
-  color: white;
-
-}
-.new-book input,button {
-
+.new-book input,
+button {
   height: 40px;
   width: 80%;
-  
+
   border-radius: 20px;
   padding-left: 10px;
   padding-right: 10px;
   margin-left: 10px;
   border-style: none;
 }
+.new-book-buttons {
+  grid-area: btn;
+  display: flex;
+  flex-direction: row;
 
+}
+.new-book-text{
+  grid-area: text;
+}
 
-.new-book input:focus , button:focus{
+.new-book input:focus,
+button:focus {
   outline: none;
 }
 
-
-
-
-.new-book-buttons{
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  
+.new-book-modal-content label {
+  font-size: 60px;
+  color: white;
 }
-.new-book-modal-content{
+
+
+.new-book-modal-content {
   background-color: var(--primaryColor);
   display: grid;
-  
+
   margin-left: 30%;
   margin-right: 30%;
-  padding:14px 14px 14px 14px;
+  padding: 14px 14px 14px 14px;
   border-radius: 10px;
   text-align: center;
 }
-.new-book-modal-content input{
+.new-book-modal-content input {
   height: 40px;
   margin-top: 10px;
   margin-bottom: 10px;
-  
 }
-.close-modal{
+.close-modal {
   text-align: left;
 }
-.modal-btn{
+.modal-btn {
   display: flex;
 }
-.modal-btn button{
-  background-color: rgb(0,0,0,0);
+.modal-btn button {
+  background-color: rgb(0, 0, 0, 0);
   border: 1px solid white;
   transition: color 0.24s;
 }
-.modal-btn button:hover{
+.modal-btn button:hover {
   color: white;
 }
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  left:0;
+  left: 0;
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: var(--primaryColor); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   padding-top: 60px;
 }
 
@@ -179,4 +173,3 @@ border: 1px solid  var(--secondaryColor) ;
   margin-left: auto;
   margin-right: auto;
 }
-

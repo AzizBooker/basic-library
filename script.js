@@ -42,11 +42,18 @@ function clearInputValues() {
     newBookPagesRead.value = "";
     newBookTotalPages.value = "";
 }
+
+listings = document.querySelector("#listings")
 function createListings() {
     allBooks.forEach(book => {
         if (allBooks.indexOf(book) >= highestIndexOfAllBooks || highestIndexOfAllBooks == 0) {
             div = document.createElement('div')
             div.classList.add('new-book')
+            divBtn = document.createElement('div')
+            divBtn.classList.add('new-book-buttons')
+            divTxt = document.createElement('div')
+            divTxt.classList.add('new-book-text')
+            
             div.dataset.index = allBooks.indexOf(book)
             p1 = document.createElement('p')
             p2 = document.createElement('p')
@@ -56,18 +63,58 @@ function createListings() {
             p2.textContent = `Author:${book.author}`
             p3.textContent = `Total Pages:${book.totalPages}`
             p4.textContent = `Pages Read:${book.pagesRead}`
-            div.appendChild(p1)
-            div.appendChild(p2)
-            div.appendChild(p3)
-            div.appendChild(p4)
+
+            closeBtn = document.createElement('button')
+            //closeBtn.dataset.index=allBooks.indexOf(book)
+            closeBtn.addEventListener('click',event=> removeListing(allBooks.indexOf(book),div))
+            editBtn = document.createElement('button')
+            closeBtn.textContent='Delete'
+            editBtn.textContent='Edit'
+
+            divBtn.appendChild(editBtn)
+            divBtn.appendChild(closeBtn)
+
+            divTxt.appendChild(p1)
+            divTxt.appendChild(p2)
+            divTxt.appendChild(p3)
+            divTxt.appendChild(p4)
+
+            divBtn.appendChild(editBtn)
+            divBtn.appendChild(closeBtn)
+
+            div.appendChild(divTxt)
+            div.appendChild(divBtn)
 
             listings.appendChild(div)
             highestIndexOfAllBooks++;
+           
         }
     })
 }
 
-listings = document.querySelector("#listings")
+function removeListing(index,masterDiv){
+console.log(`Index:${index}`)
+highestIndexOfAllBooks--;
+console.log(`Before Highest Index:${highestIndexOfAllBooks}`)
+ allBooks.splice(index,1)
+ updateListing()
+ masterDiv.parentNode.removeChild(masterDiv)
+
+ highestIndexOfAllBooks--;
+ console.log(`After Highest Index:${highestIndexOfAllBooks}`)
+ console.table(allBooks)
+
+}
+
+function updateListing(){
+    let arr=Array.from(listings.querySelectorAll('.new-book'))
+    allBooks.forEach(book => {
+        
+        div.dataset.index = allBooks.indexOf(book)
+
+    })
+}
+
 
 const newBookModal = document.getElementById('new-book-modal');
 const newBookBtn = document.getElementById('add-new-book');
@@ -102,7 +149,7 @@ sumbitModalBtn.onclick = function () {
     } else {
 
         allBooks.push(newBook)
-        console.table(allBooks)
+        console.log(`Current Highest Index:${highestIndexOfAllBooks}`)
         newBookModal.style.display = 'none'
         clearInputValues()
         createListings()
